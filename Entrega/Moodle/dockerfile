@@ -1,0 +1,21 @@
+# Usa la imagen base de PHP con Apache
+FROM php:7.4-apache
+
+# Instala extensiones de PHP necesarias para Moodle
+RUN apt-get update --fix-missing && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libpq-dev \
+    libfreetype6-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd intl opcache mysqli pdo pdo_mysql zip
+
+
+# Activa módulos de Apache necesarios para Moodle
+RUN a2enmod rewrite
+
+# Configura el directorio de trabajo
+WORKDIR /var/www/html
+
+# Copia los archivos de tu aplicación (si usas localmente Moodle)
+# COPY . /var/www/html
