@@ -1,13 +1,13 @@
 services:
-  mysql:
-    container_name: ${APP_NAME}_database
+  db:
+    container_name: ${APP_NAME}-database
     image: mysql
     ports:
       - ${DB_PORT}:3306
     restart: always
     volumes:
-      - C:\Users\izanv\OneDrive\Escritorio\2 ASIR\IAW\GitHub\bbdd\WebPDB:/var/lib/mysql
-      - C:\Users\izanv\OneDrive\Escritorio\2 ASIR\IAW\GitHub\bbdd\WebPRO:/var/www/moodledata
+      - /root/bbdd/WebPDB:/var/lib/mysql
+      - ./BBDD.sql:/docker-entrypoint-initdb.d/1.sql
     environment:
       MYSQL_ROOT_PASSWORD: $SQL_ROOT_PWD
       MYSQL_USER: $SQL_USER
@@ -17,12 +17,12 @@ services:
       MYSQL_COLLATION: utf8mb4_unicode_ci
     networks:
       net: 
-        ipv4_address: 172.16.1.2
+        ipv4_address: 172.30.1.2
 
-  web:
+  www:
     build:
       context: .
-    container_name: ${APP_NAME}_www
+    container_name: ${APP_NAME}-www
     command: ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
     tty: true
     ports:
@@ -30,11 +30,11 @@ services:
 
     networks:
       net:
-        ipv4_address: 172.16.1.3
+        ipv4_address: 172.30.1.3
 
 networks:
   net:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.16.1.0/24
+        - subnet: 172.30.1.0/24
