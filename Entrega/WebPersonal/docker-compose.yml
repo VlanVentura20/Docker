@@ -1,13 +1,12 @@
 services:
   db:
-    container_name: ${APP_NAME}-database
+    container_name: ${APP_NAME}_database
     image: mysql
     ports:
       - ${DB_PORT}:3306
     restart: always
     volumes:
-      - /root/bbdd/WebPDB:/var/lib/mysql
-      - ./BBDD.sql:/docker-entrypoint-initdb.d/1.sql
+      - C:\Users\izanv\OneDrive\Escritorio\2 ASIR\IAW\GitHub\bbdd\WebPDB:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: $SQL_ROOT_PWD
       MYSQL_USER: $SQL_USER
@@ -22,7 +21,7 @@ services:
   www:
     build:
       context: .
-    container_name: ${APP_NAME}-www
+    container_name: ${APP_NAME}_www
     command: ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
     tty: true
     ports:

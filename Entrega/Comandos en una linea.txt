@@ -1,7 +1,0 @@
-docker run -d --name servidor_mysql --network red_wp -v /opt/mysql_wp:/var/lib/mysql -e MYSQL_DATABASE=bd_wp -e MYSQL_USER=user_wp -e MYSQL_PASSWORD=asdasd -e MYSQL_ROOT_PASSWORD=asdasd mariadb
-
-docker run -d --name servidor_wp --network red_wp -v /opt/wordpress:/var/www/html/wp-content -e WORDPRESS_DB_HOST=servidor_mysql -e WORDPRESS_DB_USER=user_wp -e WORDPRESS_DB_PASSWORD=asdasd -e WORDPRESS_DB_NAME=bd_wp -p 8080:80 wordpress
-
-docker run --name drupal_db --network drupal_network -e MARIADB_ROOT_PASSWORD=root_password -e MARIADB_DATABASE=drupal -e MARIADB_USER=drupal_user -e MARIADB_PASSWORD=drupal_password -d mariadb:10.5
-
-docker run --name drupal --network drupal_network -p 8080:80 -e DRUPAL_DB_HOST=drupal_db -e DRUPAL_DB_USER=drupal_user -e DRUPAL_DB_PASSWORD=drupal_password -e DRUPAL_DB_NAME=drupal -d drupal:10

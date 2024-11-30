@@ -1,7 +1,7 @@
 
 FROM ubuntu:24.04
 ARG DEBIAN_FRONTEND=noninteractive
-RUN  apt update -y && apt upgrade -y
+RUN apt update -y && apt upgrade -y
 
 # Dejar sistema preparado para continuar
 RUN apt install -y apt-utils git rsync nano vim unzip curl wget software-properties-common git mariadb-client
