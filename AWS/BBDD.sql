@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `proyectos`
 --
 
-CREATE TABLE `Proyectos` (
+CREATE TABLE `proyectos` (
   `nombre` varchar(30) NOT NULL,
   `foto` longblob NOT NULL,
   `descripcion` text NOT NULL
